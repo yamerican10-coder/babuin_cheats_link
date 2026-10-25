@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Babuin | Standoff 2 rasmiy havolalar</title>
+  <meta name="description" content="Babuin — Standoff 2 uchun foydali narsalar va kontent. Telegram va Instagram kanallar.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&family=Russo+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+
+  <main class="wrap">
+    <header class="top">
+      <h1><span class="dot"></span>Rasmiy havolalar va kanallar</h1>
+      <span class="count">{{ links|length }} ta rasmiy manzil</span>
+    </header>
+
+    <section class="list">
+      {% for l in links %}
+      <article class="card card-{{ l.key }}">
+        <div class="icon">
+          {% if l.key == "telegram" %}
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 4.3 2.9 11.5c-.9.4-.9 1.1-.2 1.3l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.6c.9.5 1.5.2 1.7-.8L22.9 5.9c.3-1.2-.5-1.8-1.4-1.6ZM9 13.8l9.6-6c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L9 13.8Z"/></svg>
+          {% else %}
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6Zm0 2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Zm5.2-3.2a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"/></svg>
+          {% endif %}
+        </div>
+        <div class="info">
+          <div class="row">
+            <h2>{{ l.title }}</h2>
+            <span class="badge">{{ l.badge }}</span>
+          </div>
+          <p>{{ l.desc }}</p>
+          <code>{{ l.handle }}</code>
+        </div>
+        <div class="actions">
+          <button class="copy" data-copy="{{ l.url }}" aria-label="Havolani nusxalash" title="Nusxalash">
+            <svg viewBox="0 0 24 24"><path d="M9 9h10v12H9V9Zm-4-6h10v4h-2V5H7v10h2v2H5V3Z"/></svg>
+          </button>
+          <a class="go" href="{{ l.url }}" target="_blank" rel="noopener">{{ l.cta }}
+            <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.4l-8.3 8.3-1.4-1.4L17.6 5H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/></svg>
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </section>
+
+    <section class="stage" aria-label="Babuin stikerlari">
+      <div class="ticker" aria-hidden="true">
+        <div class="track">
+          <span>STANDOFF 2</span><span>🔥</span><span>BABUIN</span><span>🎯</span><span>GOLD</span><span>💎</span><span>CLUTCH</span><span>🏆</span>
+          <span>STANDOFF 2</span><span>🔥</span><span>BABUIN</span><span>🎯</span><span>GOLD</span><span>💎</span><span>CLUTCH</span><span>🏆</span>
+        </div>
+      </div>
+
+      <div class="stickers">
+        <button class="sticker s-main" id="mainSticker" aria-label="Babuin stikeri">
+          <span class="emoji">🦍</span>
+          <span class="label">BABUIN</span>
+        </button>
+        <div class="sticker s-1">🎯<small>HEADSHOT</small></div>
+        <div class="sticker s-2">💎<small>GOLD</small></div>
+        <div class="sticker s-3">🔥<small>TOP</small></div>
+        <div class="sticker s-4">🏆<small>GG</small></div>
+        <div class="sticker s-5">⚡<small>FAST</small></div>
+      </div>
+
+      <p class="hint">Gorillani bos 👆</p>
+    </section>
+
+    <footer>© Babuin · Standoff 2</footer>
+  </main>
+
+  <div class="toast" id="toast" role="status">Havola nusxalandi ✓</div>
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
